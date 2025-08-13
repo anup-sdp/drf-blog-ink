@@ -81,3 +81,42 @@ class CustomUserViewSet(viewsets.ModelViewSet):
         if self.request.user.is_staff:
             return qs
         return qs.filter(is_active=True)  # filter out inactive users for non-staff
+    
+
+"""
+create and activate user example:
+POST http://127.0.0.1:8000/api/v1/auth/users/
+body:
+{
+    "username":"anup",
+    "email":"anupbarua30@gmail.com",
+    "password":"aB@12345",
+    "phone_number":"019133"
+}
+
+response:
+201 Created
+body:
+{
+    "username": "anup",
+    "email": "anupbarua30@gmail.com",
+    "phone_number": "019133",
+    "location": "",
+    "bio": "",
+    "profile_picture": null
+}
+--------
+email was sent with activation link: http://127.0.0.1:8000/activate/Mg/cuhr6h-f0a1e91c3aa0a2937a54ce9ee97f78c1
+--------
+to activate user, POST http://127.0.0.1:8000/api/v1/auth/users/activation/
+body:
+{
+    "uid":"Mg",
+    "token":"cuhr6h-f0a1e91c3aa0a2937a54ce9ee97f78c1"
+}
+
+response:
+204 No Content
+
+is_active became TRUE in supabase postgresql database.
+"""

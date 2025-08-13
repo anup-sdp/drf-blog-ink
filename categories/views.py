@@ -86,3 +86,24 @@ Category endpoints:
 - Update category (staff only)
 - Delete category (staff only)
 """	
+
+
+"""
+example: with bearer token,
+POST http://127.0.0.1:8000/api/v1/categories/
+body:
+{
+    "name":"Programming",
+    "description":"blogs about programming"
+}
+
+response:
+201 Created
+{
+    "id": 1,
+    "name": "Programming",
+    "description": "blogs about programming",
+    "created_at": "2025-08-13T14:24:29.731060Z"
+}
+
+"""

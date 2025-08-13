@@ -7,7 +7,7 @@ from django.core.exceptions import ValidationError
 from cloudinary.models import CloudinaryField  # for image save in cloud
 
 PHONE_REGEX = RegexValidator(
-    regex=r'^\+?1?\d{9,15}$',
+    regex=r'^\+?1?\d{3,15}$',
     message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed."
 )
 

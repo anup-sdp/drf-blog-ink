@@ -204,3 +204,32 @@ class LikeViewSet(viewsets.ViewSet):
             like.delete()
             return Response({'liked': False}, status=status.HTTP_200_OK)
         return Response({'liked': True}, status=status.HTTP_201_CREATED)
+
+
+"""
+crate post example
+POST http://127.0.0.1:8000/api/v1/posts/ with bearer token
+body:
+{
+    "title":"How i learned python",
+    "body": "my python learning journey is a long way ...",
+    "category":1
+}
+
+response:
+201 Created
+body:
+{
+    "id": 1,
+    "title": "How i learned python",
+    "body": "my python learning journey is a long way ...",
+    "image": null,
+    "video_url": "",
+    "author": 2,
+    "author_username": "anup",
+    "category": 1,
+    "category_name": "Programming",
+    "created_at": "2025-08-13T15:15:22.648352Z",
+    "updated_at": "2025-08-13T15:15:22.648352Z"
+}
+"""
