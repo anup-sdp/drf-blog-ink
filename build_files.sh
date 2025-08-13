@@ -1,5 +1,7 @@
 #!/bin/bash
+
 # Install requirements
 pip install -r requirements.txt
-# Collect static files (for Django admin and DRF)
+
+# Collect static files
 python manage.py collectstatic --noinput

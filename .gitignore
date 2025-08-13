@@ -1,6 +1,6 @@
 blogenv311/
 venv/
-/staticfiles/
+#/staticfiles/
 /mediafiles/
 __pycache__/
 db.sqlite3

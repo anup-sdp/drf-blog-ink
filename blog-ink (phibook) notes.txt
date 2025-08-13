@@ -31,10 +31,14 @@ admin-admin@example.com-1234
 
 python manage.py runserver ---------
 
+for vercel deploy,
+whitenoise:
+python manage.py collectstatic
+in wsgi.py use app instead of application, so in settings.py
 ===============================
 git init
 git add .
-git commit -m "v1.5"
+git commit -m "v1.6"
 git branch -M main
 git remote add origin https://github.com/anup-sdp/drf-blog-ink.git
 git push -u origin main
