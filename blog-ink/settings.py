@@ -21,7 +21,8 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / "staticfiles" # ---
+#STATIC_ROOT = BASE_DIR / "staticfiles" # ---
+STATIC_ROOT = BASE_DIR / "staticfiles_build"  # Changed from "staticfiles"
 STATIC_FILES_DIR = BASE_DIR / 'static'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
@@ -272,3 +273,15 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')  # sender's email-id
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD') # password associated with above email-id/google app password (not the regular password)
 
 # DOMAIN = 'localhost:8000'  # Change to your actual domain in production
+
+"""
+Vercel Deployment Settings:
+Build Command: bash build_files.sh
+Output Directory: staticfiles_build
+Install Command: Can be left blank since it's in build_files.sh
+
+Ensure your build_files.sh has execute permissions:
+bash
+chmod +x build_files.sh
+then push to github
+"""

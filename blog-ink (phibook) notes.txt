@@ -34,7 +34,7 @@ python manage.py runserver ---------
 ===============================
 git init
 git add .
-git commit -m "v1.4"
+git commit -m "v1.5"
 git branch -M main
 git remote add origin https://github.com/anup-sdp/drf-blog-ink.git
 git push -u origin main
