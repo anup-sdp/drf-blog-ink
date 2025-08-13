@@ -1,13 +1,6 @@
 {
   "builds": [
     {
-      "src": "build_files.sh",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "staticfiles_build/static"
-      }
-    },
-    {
       "src": "blog-ink/wsgi.py",
       "use": "@vercel/python",
       "config": {
@@ -17,10 +10,6 @@
     }
   ],
   "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/staticfiles_build/static/$1"
-    },
     {
       "src": "/(.*)",
       "dest": "blog-ink/wsgi.py"
