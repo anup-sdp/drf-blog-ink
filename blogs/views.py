@@ -8,8 +8,8 @@ from drf_yasg import openapi
 
 class IsOwnerOrReadOnly(permissions.BasePermission):
     """
-    • Anyone can read (GET, HEAD, OPTIONS)
-    • Only owner or staff can modify
+    - Anyone can read (GET, HEAD, OPTIONS)
+    - Only owner or staff can modify
     """
     def has_object_permission(self, request, view, obj):
         return (
@@ -19,17 +19,11 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         )
 
 
-
+@swagger_auto_schema(
+    operation_summary="BlogPost endpoints",
+    operation_description="Endpoints for managing blog posts"
+)
 class BlogPostViewSet(viewsets.ModelViewSet):
-    """
-    endpoints:
-        GET    /api/v1/posts/          - list posts
-        POST   /api/v1/posts/          - create post
-        GET    /api/v1/posts/{id}/     - retrieve post
-        PUT    /api/v1/posts/{id}/     - full update post
-        PATCH  /api/v1/posts/{id}/     - partial update post
-        DELETE /api/v1/posts/{id}/     - delete post
-    """
     queryset = BlogPost.objects.select_related("author", "category")
     serializer_class = BlogPostSerializer
     permission_classes = [IsOwnerOrReadOnly]
@@ -88,18 +82,17 @@ class BlogPostViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
-
+"""
+BlogPostViewSet endpoints:
+    GET    /api/v1/posts/          - list posts
+    POST   /api/v1/posts/          - create post
+    GET    /api/v1/posts/{id}/     - retrieve post
+    PUT    /api/v1/posts/{id}/     - full update post
+    PATCH  /api/v1/posts/{id}/     - partial update post
+    DELETE /api/v1/posts/{id}/     - delete post
+"""
 
 class CommentViewSet(viewsets.ModelViewSet):
-    """
-    endpoints:
-        GET    /api/v1/posts/{post_pk}/comments/        - list comments
-        POST   /api/v1/posts/{post_pk}/comments/        - add comment
-        GET    /api/v1/posts/{post_pk}/comments/{id}/   - single comment
-        PUT    /api/v1/posts/{post_pk}/comments/{id}/   - full update
-        PATCH  /api/v1/posts/{post_pk}/comments/{id}/   - partial update
-        DELETE /api/v1/posts/{post_pk}/comments/{id}/   - delete comment
-    """
     serializer_class = CommentSerializer
     permission_classes = [IsOwnerOrReadOnly]
 
@@ -163,7 +156,15 @@ class CommentViewSet(viewsets.ModelViewSet):
         post = BlogPost.objects.get(pk=self.kwargs['post_pk'])
         serializer.save(author=self.request.user, post=post)
 
-
+"""
+CommentViewSet endpoints:
+    GET    /api/v1/posts/{post_pk}/comments/        - list comments
+    POST   /api/v1/posts/{post_pk}/comments/        - add comment
+    GET    /api/v1/posts/{post_pk}/comments/{id}/   - single comment
+    PUT    /api/v1/posts/{post_pk}/comments/{id}/   - full update
+    PATCH  /api/v1/posts/{post_pk}/comments/{id}/   - partial update
+    DELETE /api/v1/posts/{post_pk}/comments/{id}/   - delete comment
+"""
 
 
 class LikeViewSet(viewsets.ViewSet):
@@ -171,7 +172,6 @@ class LikeViewSet(viewsets.ViewSet):
     GET    /api/v1/posts/{post_pk}/likes/   - list likes
     POST   /api/v1/posts/{post_pk}/likes/   - toggle like
     """
-
     @swagger_auto_schema(
         operation_summary="List likes for a post",
         operation_description="GET /api/v1/posts/{post_pk}/likes/",
