@@ -1,0 +1,43 @@
+drf blog project (10. phiBook) (renamed to blog-ink for uniqueness)
+for phitron sdp module 27(django final) assignment:
+drf project notes:
+
+cmd project root:
+code .
+venv with my python 3.11:
+"C:\Program Files\Python311\python.exe" -m venv blogenv311
+blogenv311\Scripts\activate  --------------
+
+pip install django djangorestframework
+pip freeze > requirements.txt 
+
+django-admin startproject phibook .
+python manage.py startapp core
+python manage.py startapp users
+python manage.py startapp categories
+python manage.py startapp blogs
+python manage.py startapp payment
+
+pip install djoser djangorestframework_simplejwt django-filter Pillow drf-yasg psycopg2-binary django-cors-headers
+pip install python-decouple
+pip freeze > requirements.txt 
+
+write all codes
+python manage.py makemigrations
+python manage.py migrate
+
+python manage.py createsuperuser
+admin-admin@example.com-1234
+
+python manage.py runserver ---------
+
+===============================
+git init
+git add .
+git commit -m "v1.0"
+git branch -M main
+git remote add origin https://github.com/anup-sdp/drf-blog-app-phibook.git
+git push -u origin main
+
+
+
