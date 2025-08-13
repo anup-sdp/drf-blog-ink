@@ -35,10 +35,13 @@ for vercel deploy,
 whitenoise:
 python manage.py collectstatic
 in wsgi.py use app instead of application, so in settings.py
+
+after depoy, check if the static css file available in vercel:
+https://drf-blog-ink.vercel.app/static/rest_framework/css/bootstrap.min.css
 ===============================
 git init
 git add .
-git commit -m "v1.9"
+git commit -m "v2.0"
 git branch -M main
 git remote add origin https://github.com/anup-sdp/drf-blog-ink.git
 git push -u origin main
