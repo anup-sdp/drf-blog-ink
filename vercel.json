@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-      "src": "library_management/wsgi.py",
+      "src": "blog-ink/wsgi.py",
       "use": "@vercel/python",
       "config": {"maxLambdaSize": "15mb","runtime": "python3.11.3"}
     }    
@@ -9,7 +9,7 @@
   "routes": [    
     {
       "src": "/(.*)",
-      "dest": "library_management/wsgi.py"
+      "dest": "blog-ink/wsgi.py"
     }
   ]
 }
