@@ -50,7 +50,7 @@ write in function initiate_payment, payment_success, payment_cancel, payment_fai
 ===============================
 git init
 git add .
-git commit -m "v2.1"
+git commit -m "v2.2"
 git branch -M main
 git remote add origin https://github.com/anup-sdp/drf-blog-ink.git
 git push -u origin main
