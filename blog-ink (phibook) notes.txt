@@ -58,11 +58,19 @@ EMAIL_FRONTEND_PROTOCOL=http
 API_DOMAIN=react-phimart-client.vercel.app
 EMAIL_FRONTEND_DOMAIN=react-phimart-client.vercel.app
 DEBUG=True
+==================
+DEBUG=False
+EMAIL_FRONTEND_DOMAIN=react-blog-ink.vercel.app
+API_DOMAIN=react-blog-ink.vercel.app
+EMAIL_FRONTEND_PROTOCOL=https
+BACKEND_URL=https://drf-blog-ink.vercel.app/
+FRONTEND_URL=https://react-blog-ink.vercel.app
+...
 
 ===============================
 git init
 git add .
-git commit -m "v2.4"
+git commit -m "v2.6"
 git branch -M main
 git remote add origin https://github.com/anup-sdp/drf-blog-ink.git
 git push -u origin main
