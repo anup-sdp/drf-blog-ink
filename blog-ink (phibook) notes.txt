@@ -51,7 +51,7 @@ write in function initiate_payment, payment_success, payment_cancel, payment_fai
 ---------
 
 
-# vercel environment variables:
+# vercel environment variables, write eqivalent:
 FRONTEND_URL=http://localhost:5173
 BACKEND_URL=http://127.0.0.1:8000
 EMAIL_FRONTEND_PROTOCOL=http
@@ -62,7 +62,7 @@ DEBUG=True
 ===============================
 git init
 git add .
-git commit -m "v2.3"
+git commit -m "v2.4"
 git branch -M main
 git remote add origin https://github.com/anup-sdp/drf-blog-ink.git
 git push -u origin main

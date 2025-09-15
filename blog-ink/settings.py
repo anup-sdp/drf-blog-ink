@@ -255,7 +255,8 @@ SWAGGER_SETTINGS = {
 # CORS Settings
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React development server
-	"http://localhost:5173", # Vite’s default port:
+	"http://localhost:5173", # Vite’s default port
+	"https://react-blog-ink.vercel.app",
 	"http://127.0.0.1:3000",
 	"http://127.0.0.1:8000"
     #"https://your-react-app.vercel.app",  # Your Vercel deployment --------------------
