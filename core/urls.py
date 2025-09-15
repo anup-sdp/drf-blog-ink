@@ -8,14 +8,16 @@ from django.urls import path, include, re_path
 from users.views import CustomUserViewSet
 from categories.views import CategoryViewSet
 from blogs.views import BlogPostViewSet, CommentViewSet, LikeViewSet
-from payment.views import PaymentPlaceholderViewSet
+from payment.views import initiate_payment, payment_success, payment_fail, payment_cancel, PaymentListAPIView, PaymentDetailAPIView, PaymentViewSet
+
 
 # do as, https://github.com/anup-sdp/sdp-drf-library_mgmt/blob/main/library_management/urls.py ------- follow 
 router = DefaultRouter()
 router.register('users', CustomUserViewSet)  # /api/v1/users/
 router.register('categories', CategoryViewSet)  # GET /api/v1/categories/ – public list, POST /api/v1/categories/ – staff only
 router.register('posts', BlogPostViewSet)  # /api/v1/posts/
-router.register('payments', PaymentPlaceholderViewSet, basename='payment')  # GET /api/v1/payments/
+#router.register('payments', PaymentPlaceholderViewSet, basename='payment')  # GET /api/v1/payments/
+router.register('payments', PaymentViewSet, basename='payment')
 
 # nested under /posts/
 posts_router = nested.NestedDefaultRouter(router, 'posts', lookup='post')
@@ -35,6 +37,15 @@ schema_view = get_schema_view(
    permission_classes=(permissions.AllowAny,),  # allows anyone to access the docs   
 )
 
+payment_patterns = [
+	path('initiate/', initiate_payment, name='initiate-payment'), # sslcommerz payment
+    path("success/", payment_success, name="payment-success"), 
+    path("fail/", payment_fail, name="payment-fail"),
+    path("cancel/", payment_cancel, name="payment-cancel"),
+    path('list/', PaymentListAPIView.as_view(), name='payment-list'), 
+    path('<str:transaction_id>/', PaymentDetailAPIView.as_view(), name='payment-detail'),
+]
+
 urlpatterns = [    
 	path('', include(router.urls)),
     path('', include(posts_router.urls)), 
@@ -48,6 +59,8 @@ urlpatterns = [
 	#	
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),  # /api/v1/swagger/
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),  # /api/v1/redoc/
+	# payment urls
+	path('payment/', include((payment_patterns, 'payment'))), # eg payment/initiate/  , payment/list/ etc
 ]
 
 """

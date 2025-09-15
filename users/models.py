@@ -23,11 +23,19 @@ class CustomUser(AbstractUser):
     bio = models.TextField(blank=True, max_length=500)
     #profile_picture = models.ImageField(upload_to='blog-ink_avatars/', validators=[validate_image_size], blank=True, null=True) # latter use claudinary field
     profile_picture = CloudinaryField('image', folder='blog-ink_avatars', blank=True, null=True,)  # to save image in cloud, default='blog-ink_avatars/default_img.png'
+    is_subscribed = models.BooleanField(default=False) # has user bought subscription field
     
     def save(self, *args, **kwargs):
         if not self.pk:  # only for new users
-            self.is_active = False  # set True by activation email.
+            if self.is_superuser:
+                self.is_active = True  # superusers are active by default
+            else:
+                self.is_active = False  # set True by activation email for regular users
         super().save(*args, **kwargs)
 
     def __str__(self):
         return self.username
+    
+    @property
+    def full_name(self):
+        return f"{self.first_name or ''} {self.last_name or ''}".strip()

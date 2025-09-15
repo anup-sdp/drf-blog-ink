@@ -1,6 +1,7 @@
 # blogs, views.py:
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
+from rest_framework.decorators import action
 from drf_yasg.utils import swagger_auto_schema
 from .models import BlogPost, Comment, Like
 from .serializers import BlogPostSerializer, CommentSerializer, LikeSerializer
@@ -24,9 +25,27 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
     operation_description="Endpoints for managing blog posts"
 )
 class BlogPostViewSet(viewsets.ModelViewSet):
-    queryset = BlogPost.objects.select_related("author", "category")
+    queryset = BlogPost.objects.select_related("author", "category").filter(is_active=True)  # Filter active posts
     serializer_class = BlogPostSerializer
     permission_classes = [IsOwnerOrReadOnly]
+    
+    def get_queryset(self):
+        """
+        Optionally restricts the returned posts to active ones,
+        by filtering against the `is_active` field.
+        Staff users can see all posts.
+        """
+        if getattr(self, 'swagger_fake_view', False):
+            return BlogPost.objects.none()
+            
+        queryset = BlogPost.objects.select_related("author", "category")
+        
+        # Staff users can see all posts
+        if self.request.user.is_staff:
+            return queryset
+            
+        # Regular users only see active posts
+        return queryset.filter(is_active=True)
 
     @swagger_auto_schema(
         operation_summary="List all posts",
@@ -81,7 +100,57 @@ class BlogPostViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
-
+    #
+    @swagger_auto_schema(
+        operation_summary="Get free blogs",
+        operation_description="GET /api/v1/posts/free-blogs/ - Get all active non-premium blogs",
+        responses={200: BlogPostSerializer(many=True)}
+    )
+    @action(detail=False, methods=['get'], url_path='free-blogs')
+    def get_free_blogs(self, request):
+        """
+        Get all active non-premium blogs
+        """
+        if getattr(self, 'swagger_fake_view', False):
+            return Response([])
+            
+        queryset = BlogPost.objects.select_related("author", "category").filter(
+            is_active=True, 
+            is_premium=False
+        )
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+    #
+    @swagger_auto_schema(
+        operation_summary="Get premium blogs",
+        operation_description="GET /api/v1/posts/premium-blogs/ - Get all active premium blogs (subscribed users only)",
+        responses={
+            200: BlogPostSerializer(many=True),
+            403: "Forbidden - Subscription required"
+        }
+    )
+    @action(detail=False, methods=['get'], url_path='premium-blogs')
+    def get_premium_blogs(self, request):
+        """
+        Get all active premium blogs (subscribed users only)
+        """
+        if getattr(self, 'swagger_fake_view', False):
+            return Response([])
+            
+        # Check if user is subscribed
+        if not request.user.is_subscribed and not request.user.is_staff:
+            return Response(
+                {"detail": "You need an active subscription to access premium content."},
+                status=status.HTTP_403_FORBIDDEN
+            )
+            
+        queryset = BlogPost.objects.select_related("author", "category").filter(
+            is_active=True, 
+            is_premium=True
+        )
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)  
+ 
 """
 BlogPostViewSet endpoints:
     GET    /api/v1/posts/          - list posts
@@ -91,6 +160,7 @@ BlogPostViewSet endpoints:
     PATCH  /api/v1/posts/{id}/     - partial update post
     DELETE /api/v1/posts/{id}/     - delete post
 """
+
 
 class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer

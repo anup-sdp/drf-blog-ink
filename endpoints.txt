@@ -1,0 +1,133 @@
+(blogenv311) D:\Phitron\SDT\dj-phitron\drf-blog>python manage.py print_endpoints
+API Endpoints:
+==================================================
+admin/                                             -> index
+admin/login/                                       -> login
+admin/logout/                                      -> logout
+admin/password_change/                             -> password_change
+admin/password_change/done/                        -> password_change_done
+admin/autocomplete/                                -> autocomplete_view
+admin/jsi18n/                                      -> i18n_javascript
+admin/r/<path:content_type_id>/<path:object_id>/   -> shortcut
+admin/auth/group/                                  -> changelist_view
+admin/auth/group/add/                              -> add_view
+admin/auth/group/<path:object_id>/history/         -> history_view
+admin/auth/group/<path:object_id>/delete/          -> delete_view
+admin/auth/group/<path:object_id>/change/          -> change_view
+admin/auth/group/<path:object_id>/                 -> view
+admin/users/customuser/<id>/password/              -> user_change_password
+admin/users/customuser/                            -> changelist_view
+admin/users/customuser/add/                        -> add_view
+admin/users/customuser/<path:object_id>/history/   -> history_view
+admin/users/customuser/<path:object_id>/delete/    -> delete_view
+admin/users/customuser/<path:object_id>/change/    -> change_view
+admin/users/customuser/<path:object_id>/           -> view
+admin/categories/category/                         -> changelist_view
+admin/categories/category/add/                     -> add_view
+admin/categories/category/<path:object_id>/history/ -> history_view
+admin/categories/category/<path:object_id>/delete/ -> delete_view
+admin/categories/category/<path:object_id>/change/ -> change_view
+admin/categories/category/<path:object_id>/        -> view
+admin/blogs/blogpost/                              -> changelist_view
+admin/blogs/blogpost/add/                          -> add_view
+admin/blogs/blogpost/<path:object_id>/history/     -> history_view
+admin/blogs/blogpost/<path:object_id>/delete/      -> delete_view
+admin/blogs/blogpost/<path:object_id>/change/      -> change_view
+admin/blogs/blogpost/<path:object_id>/             -> view
+admin/blogs/comment/                               -> changelist_view
+admin/blogs/comment/add/                           -> add_view
+admin/blogs/comment/<path:object_id>/history/      -> history_view
+admin/blogs/comment/<path:object_id>/delete/       -> delete_view
+admin/blogs/comment/<path:object_id>/change/       -> change_view
+admin/blogs/comment/<path:object_id>/              -> view
+admin/blogs/like/                                  -> changelist_view
+admin/blogs/like/add/                              -> add_view
+admin/blogs/like/<path:object_id>/history/         -> history_view
+admin/blogs/like/<path:object_id>/delete/          -> delete_view
+admin/blogs/like/<path:object_id>/change/          -> change_view
+admin/blogs/like/<path:object_id>/                 -> view
+admin/payment/payment/                             -> changelist_view
+admin/payment/payment/add/                         -> add_view
+admin/payment/payment/<path:object_id>/history/    -> history_view
+admin/payment/payment/<path:object_id>/delete/     -> delete_view
+admin/payment/payment/<path:object_id>/change/     -> change_view
+admin/payment/payment/<path:object_id>/            -> view
+admin/authtoken/tokenproxy/                        -> changelist_view
+admin/authtoken/tokenproxy/add/                    -> add_view
+admin/authtoken/tokenproxy/<path:object_id>/history/ -> history_view
+admin/authtoken/tokenproxy/<path:object_id>/delete/ -> delete_view
+admin/authtoken/tokenproxy/<path:object_id>/change/ -> change_view
+admin/authtoken/tokenproxy/<path:object_id>/       -> view
+admin/(?P<app_label>auth|users|categories|blogs|payment|authtoken)/ -> app_index
+admin/(?P<url>.*)                                  -> catch_all_view
+                                                   -> api_root_view
+api/v1/users/                                      -> CustomUserViewSet
+api/v1/users\.(?P<format>[a-z0-9]+)/?              -> CustomUserViewSet
+api/v1/users/(?P<pk>[/.]+)/                        -> CustomUserViewSet
+api/v1/users/(?P<pk>[/.]+)\.(?P<format>[a-z0-9]+)/? -> CustomUserViewSet
+api/v1/categories/                                 -> CategoryViewSet
+api/v1/categories\.(?P<format>[a-z0-9]+)/?         -> CategoryViewSet
+api/v1/categories/(?P<pk>[/.]+)/                   -> CategoryViewSet
+api/v1/categories/(?P<pk>[/.]+)\.(?P<format>[a-z0-9]+)/? -> CategoryViewSet
+api/v1/posts/                                      -> BlogPostViewSet
+api/v1/posts\.(?P<format>[a-z0-9]+)/?              -> BlogPostViewSet
+api/v1/posts/free-blogs/                           -> BlogPostViewSet
+api/v1/posts/free-blogs\.(?P<format>[a-z0-9]+)/?   -> BlogPostViewSet
+api/v1/posts/premium-blogs/                        -> BlogPostViewSet
+api/v1/posts/premium-blogs\.(?P<format>[a-z0-9]+)/? -> BlogPostViewSet
+api/v1/posts/(?P<pk>[/.]+)/                        -> BlogPostViewSet
+api/v1/posts/(?P<pk>[/.]+)\.(?P<format>[a-z0-9]+)/? -> BlogPostViewSet
+api/v1/payments/                                   -> PaymentViewSet
+api/v1/payments\.(?P<format>[a-z0-9]+)/?           -> PaymentViewSet
+api/v1/payments/my_payments/                       -> PaymentViewSet
+api/v1/payments/my_payments\.(?P<format>[a-z0-9]+)/? -> PaymentViewSet
+api/v1/payments/(?P<pk>[/.]+)/                     -> PaymentViewSet
+api/v1/payments/(?P<pk>[/.]+)\.(?P<format>[a-z0-9]+)/? -> PaymentViewSet
+api/v1/                                            -> APIRootView [GET]
+api/v1/<drf_format_suffix:format>                  -> APIRootView [GET]
+api/v1/posts/(?P<post_pk>[/.]+)/comments/          -> CommentViewSet
+api/v1/posts/(?P<post_pk>[/.]+)/comments\.(?P<format>[a-z0-9]+)/? -> CommentViewSet
+api/v1/posts/(?P<post_pk>[/.]+)/comments/(?P<pk>[/.]+)/ -> CommentViewSet
+api/v1/posts/(?P<post_pk>[/.]+)/comments/(?P<pk>[/.]+)\.(?P<format>[a-z0-9]+)/? -> CommentViewSet
+api/v1/posts/(?P<post_pk>[/.]+)/likes/             -> LikeViewSet
+api/v1/posts/(?P<post_pk>[/.]+)/likes\.(?P<format>[a-z0-9]+)/? -> LikeViewSet
+api/v1/                                            -> APIRootView [GET]
+api/v1/<drf_format_suffix:format>                  -> APIRootView [GET]
+api/v1/token/                                      -> TokenObtainPairView [POST]
+api/v1/token/refresh/                              -> TokenRefreshView [POST]
+api/v1/token/verify/                               -> TokenVerifyView [POST]
+api/v1/auth/users/                                 -> UserViewSet
+api/v1/auth/users\.(?P<format>[a-z0-9]+)/?         -> UserViewSet
+api/v1/auth/users/activation/                      -> UserViewSet
+api/v1/auth/users/activation\.(?P<format>[a-z0-9]+)/? -> UserViewSet
+api/v1/auth/users/me/                              -> UserViewSet
+api/v1/auth/users/me\.(?P<format>[a-z0-9]+)/?      -> UserViewSet
+api/v1/auth/users/resend_activation/               -> UserViewSet
+api/v1/auth/users/resend_activation\.(?P<format>[a-z0-9]+)/? -> UserViewSet
+api/v1/auth/users/reset_password/                  -> UserViewSet
+api/v1/auth/users/reset_password\.(?P<format>[a-z0-9]+)/? -> UserViewSet
+api/v1/auth/users/reset_password_confirm/          -> UserViewSet
+api/v1/auth/users/reset_password_confirm\.(?P<format>[a-z0-9]+)/? -> UserViewSet
+api/v1/auth/users/reset_username/                  -> UserViewSet
+api/v1/auth/users/reset_username\.(?P<format>[a-z0-9]+)/? -> UserViewSet
+api/v1/auth/users/reset_username_confirm/          -> UserViewSet
+api/v1/auth/users/reset_username_confirm\.(?P<format>[a-z0-9]+)/? -> UserViewSet
+api/v1/auth/users/set_password/                    -> UserViewSet
+api/v1/auth/users/set_password\.(?P<format>[a-z0-9]+)/? -> UserViewSet
+api/v1/auth/users/set_username/                    -> UserViewSet
+api/v1/auth/users/set_username\.(?P<format>[a-z0-9]+)/? -> UserViewSet
+api/v1/auth/users/(?P<id>[/.]+)/                   -> UserViewSet
+api/v1/auth/users/(?P<id>[/.]+)\.(?P<format>[a-z0-9]+)/? -> UserViewSet
+api/v1/auth/                                       -> APIRootView [GET]
+api/v1/auth/<drf_format_suffix:format>             -> APIRootView [GET]
+api/v1/auth/jwt/create/?                           -> TokenObtainPairView [POST]
+api/v1/auth/jwt/refresh/?                          -> TokenRefreshView [POST]
+api/v1/auth/jwt/verify/?                           -> TokenVerifyView [POST]
+api/v1/swagger/                                    -> SchemaView [GET]
+api/v1/redoc/                                      -> SchemaView [GET]
+api/v1/payment/initiate/                           -> initiate_payment [POST]
+api/v1/payment/success/                            -> payment_success [POST]
+api/v1/payment/fail/                               -> payment_fail [POST]
+api/v1/payment/cancel/                             -> payment_cancel [POST]
+api/v1/payment/list/                               -> PaymentListAPIView [GET]
+api/v1/payment/<str:transaction_id>/               -> PaymentDetailAPIView [GET]

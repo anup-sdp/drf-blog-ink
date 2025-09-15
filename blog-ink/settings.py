@@ -1,5 +1,8 @@
-# drf app for assignment module 28 (django final exam), phitron, sdp
+# drf app for assignment module 27 (django final exam), phitron, sdp
 # project: 10. phibook, known as blog-ink in these drf project 
+# github: https://github.com/anup-sdp/drf-blog-ink
+# vercel: https://drf-blog-ink.vercel.app/api/v1/
+
 """
 Django settings for blog-ink project.
 
@@ -82,7 +85,7 @@ INSTALLED_APPS = [
 	'drf_yasg', # yasg: Yet Another Swagger Generator. https://drf-yasg.readthedocs.io/en/stable/readme.html
 	"corsheaders", # for later react part, https://pypi.org/project/django-cors-headers/
 	"cloudinary",
-    "cloudinary_storage",
+    "cloudinary_storage",	
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
@@ -132,7 +135,7 @@ DATABASES = {
 }
 
 """
-# supabase postgresql database: anupbarau41@gmail.com's Org, drf-blog-ink
+# supabase postgresql database: anupbarua41@gmail.com's Org, drf-blog-ink
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -221,7 +224,7 @@ SIMPLE_JWT = {
 DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL': 'username/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL': 'activate/{uid}/{token}',  # ------------------------------ add full url for react ?
+    'ACTIVATION_URL': 'activate/{uid}/{token}',  # ------------------------------ 
     'SEND_ACTIVATION_EMAIL': True,  # ---- if False auto activation of user.
     'SERIALIZERS': {
         'user_create': 'users.serializers.UserRegistrationSerializer',
@@ -233,6 +236,8 @@ DJOSER = {
         'user_list': ['rest_framework.permissions.IsAuthenticated'],
     },
 }
+
+FRONTEND_URL = config('FRONTEND_URL', default='http://localhost:5173') # for email, change after deploying react frontend ----------------------
 
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {

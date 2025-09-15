@@ -1,0 +1,7 @@
+Create a custom management command to print all DRF endpoints:
+To use this custom command:
+
+Create the directory structure: yourapp/management/commands/
+Add empty __init__.py files in both management/ and commands/ directories
+Save the code above as print_endpoints.py in the commands/ directory
+Run: python manage.py print_endpoints

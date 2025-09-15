@@ -13,7 +13,7 @@ class BlogPostSerializer(serializers.ModelSerializer):
         fields = [
             "id", "title", "body", "image", "video_url",
             "author", "author_username", "category", "category_name",
-            "created_at", "updated_at",
+            "created_at", "updated_at", "is_active", "is_premium"
         ]
         read_only_fields = ["id", "author", "created_at", "updated_at"]
 
@@ -21,6 +21,7 @@ class BlogPostSerializer(serializers.ModelSerializer):
         if value and value.size > MAX_IMAGE_KB * 1024:
             raise serializers.ValidationError(f"Image must be ≤ {MAX_IMAGE_KB} KB.")
         return value
+    
     
 class CommentSerializer(serializers.ModelSerializer):
     author_username = serializers.CharField(source='author.username', read_only=True)

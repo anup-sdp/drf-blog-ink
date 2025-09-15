@@ -7,6 +7,7 @@ code .
 venv with my python 3.11:
 "C:\Program Files\Python311\python.exe" -m venv blogenv311
 blogenv311\Scripts\activate  --------------
+python manage.py runserver ---------
 
 pip install django djangorestframework
 pip freeze > requirements.txt 
@@ -38,10 +39,18 @@ in wsgi.py use app instead of application, so in settings.py
 
 after depoy, check if the static css file available in vercel:
 https://drf-blog-ink.vercel.app/static/rest_framework/css/bootstrap.min.css
+
+---------
+sslcommerz (done as phimart project)
+pip install sslcommerz-lib  --(alternative: used in fastkart project: pip install sslcommerz-python-api)
+write in function initiate_payment, payment_success, payment_cancel, payment_fail in payment.views app. add urls in app core,
+---------
+
+
 ===============================
 git init
 git add .
-git commit -m "v2.0"
+git commit -m "v2.1"
 git branch -M main
 git remote add origin https://github.com/anup-sdp/drf-blog-ink.git
 git push -u origin main

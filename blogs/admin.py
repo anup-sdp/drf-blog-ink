@@ -3,8 +3,8 @@ from .models import BlogPost, Comment, Like
 
 @admin.register(BlogPost)
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display  = ("id", "title", "author", "category", "created_at")
-    list_filter   = ("category", "created_at")
+    list_display  = ("id", "title", "author", "category", "created_at", "is_active", "is_premium",)
+    list_filter   = ("category", "created_at", "is_active", "is_premium",)
     search_fields = ("title", "body")
     raw_id_fields = ("author", "category")
     
