@@ -137,10 +137,10 @@ def initiate_payment(request):
     post_body['currency'] = "BDT"
     #post_body['tran_id'] = f"txn_{order_id}" # in phimart project
     post_body['tran_id'] = f"{tran_id}"
-    post_body['success_url'] = f"{settings.BACKEND_URL}/api/payment/success/"
-    post_body['fail_url'] = f"{settings.BACKEND_URL}/api/payment/fail/"
-    post_body['cancel_url'] = f"{settings.BACKEND_URL}/api/payment/cancel/"
-    post_body['ipn_url']     = f"{settings.BACKEND_URL}/api/payment/ipn/"   # <--- server-to-server POST
+    post_body['success_url'] = f"{settings.BACKEND_URL}/api/v1/payment/success/"
+    post_body['fail_url'] = f"{settings.BACKEND_URL}/api/v1/payment/fail/"
+    post_body['cancel_url'] = f"{settings.BACKEND_URL}/api/v1/payment/cancel/"
+    post_body['ipn_url']     = f"{settings.BACKEND_URL}/api/v1/payment/ipn/"   # <--- server-to-server POST
     post_body['emi_option'] = 0
     post_body['cus_name'] = user.full_name
     post_body['cus_email'] = user.email
@@ -215,7 +215,8 @@ def payment_success(request):
         # return error response or handle as you need
         return JsonResponse({"error": f"payment history update failed for transaction id : {tran_id}"}, status=500)
     # If frontend expects redirect, keep it. If it's an API call, consider returning JSON.
-    return HttpResponseRedirect(f"{settings.FRONTEND_URL}/dashboard/orders/") # remove orders endpoint -----------------
+    #return HttpResponseRedirect(f"{settings.FRONTEND_URL}/dashboard/orders/") # remove orders endpoint
+    return HttpResponseRedirect(f"{settings.FRONTEND_URL}/payment/success")
     # or: return JsonResponse({"ok": True})
 
 
@@ -223,10 +224,9 @@ def payment_success(request):
 
 @api_view(['POST'])
 def payment_cancel(request):
-    return HttpResponseRedirect(f"{settings.FRONTEND_URL}/dashboard/orders/")
+    return HttpResponseRedirect(f"{settings.FRONTEND_URL}/payment/cancel")
 
 
 @api_view(['POST'])
-def payment_fail(request):
-    print("Inside fail")
-    return HttpResponseRedirect(f"{settings.FRONTEND_URL}/dashboard/orders/")
+def payment_fail(request):    
+    return HttpResponseRedirect(f"{settings.FRONTEND_URL}/payment/fail")

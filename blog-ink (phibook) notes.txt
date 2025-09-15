@@ -29,6 +29,10 @@ python manage.py migrate
 
 python manage.py createsuperuser
 admin-admin@example.com-1234
+{
+    "username":"anup",
+    "password":"aB@12345"
+}
 
 python manage.py runserver ---------
 
@@ -47,10 +51,18 @@ write in function initiate_payment, payment_success, payment_cancel, payment_fai
 ---------
 
 
+# vercel environment variables:
+FRONTEND_URL=http://localhost:5173
+BACKEND_URL=http://127.0.0.1:8000
+EMAIL_FRONTEND_PROTOCOL=http
+API_DOMAIN=react-phimart-client.vercel.app
+EMAIL_FRONTEND_DOMAIN=react-phimart-client.vercel.app
+DEBUG=True
+
 ===============================
 git init
 git add .
-git commit -m "v2.2"
+git commit -m "v2.3"
 git branch -M main
 git remote add origin https://github.com/anup-sdp/drf-blog-ink.git
 git push -u origin main
