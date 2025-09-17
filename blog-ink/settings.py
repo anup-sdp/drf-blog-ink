@@ -224,9 +224,10 @@ SIMPLE_JWT = {
 DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL': 'username/reset/confirm/{uid}/{token}',
-	'DOMAIN': config('EMAIL_FRONTEND_DOMAIN', default='react-blog-ink.vercel.app'),  #
-	'SITE_NAME': 'Blog-Ink',  # Add this (can be any name for your site)
-    'ACTIVATION_URL': 'activate/{uid}/{token}',  # ------------------------------ 
+    'EMAIL_FRONTEND_DOMAIN': config('EMAIL_FRONTEND_DOMAIN', default='react-blog-ink.vercel.app'),
+    'EMAIL_FRONTEND_PROTOCOL': config('EMAIL_FRONTEND_PROTOCOL', default='https'), #
+    'EMAIL_FRONTEND_SITE_NAME': 'Blog-Ink', #
+    'ACTIVATION_URL': 'activate/{uid}/{token}', #
     'SEND_ACTIVATION_EMAIL': True,  # ---- if False auto activation of user.
     'SERIALIZERS': {
         'user_create': 'users.serializers.UserRegistrationSerializer',
@@ -258,10 +259,9 @@ SWAGGER_SETTINGS = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React development server
 	"http://localhost:5173", # Vite’s default port
-	"https://react-blog-ink.vercel.app",
+	"https://react-blog-ink.vercel.app", # my Vercel deployment ---
 	"http://127.0.0.1:3000",
-	"http://127.0.0.1:8000"
-    #"https://your-react-app.vercel.app",  # Your Vercel deployment --------------------
+	"http://127.0.0.1:8000"    
 ]
 
 # For more permissive CORS during development
