@@ -278,4 +278,17 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')  # sender's email-id
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD') # password associated with above email-id/google app password (not the regular password)
 
-# DOMAIN = 'localhost:8000'  # Change to your actual domain in production
+#
+# Tell Djoser the frontend domain & protocol to use in emails:
+EMAIL_FRONTEND_DOMAIN = config('EMAIL_FRONTEND_DOMAIN', default='react-blog-ink.vercel.app')
+EMAIL_FRONTEND_PROTOCOL = config('EMAIL_FRONTEND_PROTOCOL', default='https')
+
+
+"""
+vercel env variables:
+FRONTEND_URL: https://react-blog-ink.vercel.app
+API_DOMAIN: react-blog-ink.vercel.app
+EMAIL_FRONTEND_PROTOCOL: https
+EMAIL_FRONTEND_DOMAIN: react-blog-ink.vercel.app
+DEBUG: False
+"""
