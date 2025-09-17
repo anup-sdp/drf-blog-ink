@@ -29,8 +29,8 @@ python manage.py migrate
 
 python manage.py createsuperuser
 admin-admin@example.com-1234
-
 "username":"anup", "email":"anupbarua30@gmail.com"  "password":"aB@12345"
+nax-naxego1464@ishense.com-aB@12345
 
 
 python manage.py runserver ---------
@@ -73,6 +73,12 @@ git commit -m "v2.7"
 git branch -M main
 git remote add origin https://github.com/anup-sdp/drf-blog-ink.git
 git push -u origin main
+---
+git add .
+git commit -m "v2.8"
+git push -u origin main
+
+
 
 
 

@@ -224,6 +224,8 @@ SIMPLE_JWT = {
 DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL': 'username/reset/confirm/{uid}/{token}',
+	'DOMAIN': config('EMAIL_FRONTEND_DOMAIN', default='react-blog-ink.vercel.app'),  #
+	'SITE_NAME': 'Blog-Ink',  # Add this (can be any name for your site)
     'ACTIVATION_URL': 'activate/{uid}/{token}',  # ------------------------------ 
     'SEND_ACTIVATION_EMAIL': True,  # ---- if False auto activation of user.
     'SERIALIZERS': {
