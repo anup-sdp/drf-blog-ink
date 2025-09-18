@@ -221,6 +221,9 @@ SIMPLE_JWT = {
     'TOKEN_TYPE_CLAIM': 'token_type',
 }
 
+FRONTEND_URL = config('FRONTEND_URL', default='http://localhost:5173') # for email, change after deploying react frontend 
+BACKEND_URL = config("BACKEND_URL", default='http://127.0.0.1:8000/') # used in payment.views for sslcommerz
+
 DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL': 'username/reset/confirm/{uid}/{token}',
@@ -240,8 +243,6 @@ DJOSER = {
     },
 }
 
-FRONTEND_URL = config('FRONTEND_URL', default='http://localhost:5173') # for email, change after deploying react frontend ----------------------
-BACKEND_URL = config("BACKEND_URL", default='http://127.0.0.1:8000/') # used in payment.views for sslcommerz
 
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {

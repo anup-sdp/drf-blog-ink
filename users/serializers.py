@@ -15,7 +15,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
     full_name = serializers.ReadOnlyField() 
     class Meta:
         model = CustomUser
-        fields = ["id","username","email", "full_name", "phone_number","location","bio","profile_picture","is_active","is_staff","is_subscribed"]  # Add is_subscribed here
+        fields = ["id","username","email","first_name","last_name", "full_name", "phone_number","location","bio","profile_picture","is_active","is_staff","is_subscribed"]  # Add is_subscribed here
         read_only_fields = ["id"]
     def get_fields(self):
         """
